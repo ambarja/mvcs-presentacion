@@ -1,0 +1,184 @@
+---
+format: 
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    logo: "https://avatars.githubusercontent.com/u/23284899?s=400&u=29d47f80775bdc87c20799a5065417e12026e611&v=4"
+    footer: "[https://ambarja.github.io/bono-reforzamiento](https://jthomasmock.github.io/arrow-dplyr)"
+    code-copy: true
+    center-title-slide: false
+    include-in-header: heading-meta.html
+    code-link: true
+    code-overflow: wrap
+    highlight-style: a11y
+    height: 1080
+    width: 1920
+execute: 
+  eval: true
+  echo: true
+---
+<style>
+.slide-logo {
+  border-radius: 50%;  
+  width: 250px;      
+  height: 250px;
+  object-fit: cover;  
+  display: block;
+}
+</style>
+
+```{r}
+#| echo: false
+library(fontawesome)
+```
+
+
+<h1> Situación actual del Geovisor<br>Bono de Reforzamiento de la </h1>
+
+<h2> DGPPVU `(MVCS)` </h2>
+
+<hr>
+
+<h3> Antony Barja, Analista GIS </h3>
+
+<h3>`r Sys.Date()`  </h3>
+<h3> `r fontawesome::fa("github", "black")` &nbsp; [github.com/ambarja/mvcs](https://github.com/jthomasmock/arrow-dplyr)
+<br/>
+<br/>
+![](img/logo_viv.png){.absolute width="1200"}
+
+
+## Componentes
+
+> Hasta la fecha, el visor geográfico del **Bono de Reforzamiento** cuenta con un total de **8 capas**, **4 tablas** y **11 servicios Web Map** provenientes de otras instituciones.
+
+. . .
+
+Entre estos tenemos a:
+
+. . . 
+
+  - **Capas (Layers)**
+    - Límites de lotes, manzanas, pueblos, distritos y provincias
+    - Microzonificación Sísmica (PNC)
+    - Obras culminadas y en proceso
+    
+. . .
+
+  - **Tablas**
+    - Evaluación, estado de obra, potenciales beneficiarios y sensibilización
+    
+. . . 
+
+  - **Servicios WebMap**
+    - Redes viales provenientes del MTC
+
+
+## Geovisor del Bono de Reforzamiento
+
+<video src="img/video.mp4" width="100%" controls></video>
+
+
+## Servicios de Capas Web de la DGPPVU
+
+> La DGPPVU cuenta con 3 servicios web de datos espaciales los cuales pueden ser consumidos desde visores, aplicaciones web, ArcGIS Pro, entre otros entornos GIS.
+
+. . . 
+
+A continuación se detallan los servicios disponibles:
+
+. . . 
+
+  - **MapServer**: 
+    - 1_Gestión y Mantenimiento
+    - 1_Seguimiento y Monitoreo
+    - FichasEvaluacion
+
+. . . 
+
+  - **FeatureServer**: 
+    - 1_Gestión y Mantenimiento
+    - ~~1_Seguimiento y Monitoreo~~ (No disponible)
+    - ~~FichasEvaluacion~~ (No disponible)
+    
+
+
+Todos estos servicios están gestionados dentro de la plataforma **ArcGIS Enterprise** del **MVCS**.
+
+
+## Servicios de Capas Web de la DGPPVU
+:::{.column width="100%"}
+[![](./img/p5.png){fig-align="center" height="800"}](https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/1_Gesti%C3%B3n_y_Mantenimiento/MapServer)
+:::
+
+
+## Servicios de Capas Web de la DGPPVU
+:::{.column width="100%"}
+[![](./img/px.png){fig-align="center" height="800"}](https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/1_Seguimiento_Monitoreo/MapServer)
+:::
+
+
+## Servicios de Capas Web de la DGPPVU
+:::{.column width="100%"}
+[![](./img/py.png){fig-align="center" height="800"}](https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/FichasEvaluacion/MapServer)
+:::
+
+
+## Integración
+
+> La unificación de estos componentes está presente dentro de un `Web Map` desarrollado y almacenado en el **ArcGIS Enterprise** del **MVCS**. 
+
+:::{.column width="100%"}
+[![](./img/p1.png){fig-align="center" height="800"}](https://dportalgis.vivienda.gob.pe/dportal/home/item.html?id=bf3a57e17efb4186b4f60ab15ccba49a)
+:::
+
+
+## Servicios
+> Existen algunos `Feature Layer` y `Map Image Layer` y otros disponibles y almacenado en el **ArcGIS Enterprise** del **MVCS**. 
+
+:::{.column width="100%"}
+[![](./img/p2.png){fig-align="center" height="900"}](https://dportalgis.vivienda.gob.pe/dportal/home/content.html?view=table&start=1&num=20&sortOrder=desc&sortField=modified&folder=a5f40b604d2b4aa3a1cbea92645d9fc8#content)
+:::
+
+## Mantenimiento del Geovisor
+
+> Actualmente el **GeoVisor** de la DGPPVU esta actualizado con un conjunto de pipelines desarrollados en R , principalemente con el metapaquete de **arcgis**.
+
+:::{.column width="100%"}
+![](./img/p4.png){fig-align="center" height="800"}
+:::
+
+## ¿Problemas?
+
+:::{.column width="100%"}
+![](./img/bug.jpg){fig-align="center" height="900"}
+:::
+
+
+
+## ¿Qué necesitamos?
+
+> El geovisor necesita tener constantes actualizaciones como:
+
+. . .
+
+* Agregar nuevos códigos y descripciones a los dominio ya existentes
+  - Ejemplo: Agregar nuevos Ing. Evaluadores.
+
+. . .
+
+* ~~Generar nuevas divisiones a los predios ya existentes~~ (**Gestionado y disponible**).
+
+. . .
+
+* Actualizar etiquetas con errores de codificación de texto (UTF-8).
+
+. . .
+
+* Actualizar las fichas de evaluación
+
+. . . 
+
+* Estabilidad y fluidez.
+
+## ¡Gracias! {.inverse .center}
